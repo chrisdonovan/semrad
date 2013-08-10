@@ -3,20 +3,20 @@
 <?php include("includes/header.php"); ?>
 <?php include("includes/menu.php"); ?>
 
-    <div class="span2"></div>
-    <div class="span9">
-          <h2>Content Area</h2>
-                
-                <select name="csvtype" form="csvform">
-                    <option value="calls">Call Log</option>
-                    <option value="nashpostlog">Nashville Post Log</option>
-                    <option value="atlpostlog">Atlanta Post Log</option>
-                </select>
-                <form action="uploadpost.php" method="post" enctype="multipart/form-data" id="csvform">
-                    <label for="file">Filename:</label>
-                    <input type="file" name="file" id="file"><br>
-                    <input type="submit" name="submit" value="Submit">
-                </form>
+<div class="span2"></div>
+<div class="span9">
+<h2>Content Area</h2>
+
+<select name="csvtype" form="csvform">
+    <option value="calls">Call Log</option>
+    <option value="nashpostlog">Nashville Post Log</option>
+    <option value="atlpostlog">Atlanta Post Log</option>
+</select>
+<form action="uploadpost.php" method="post" enctype="multipart/form-data" id="csvform">
+    <label for="file">Filename:</label>
+    <input type="file" name="file" id="file"><br>
+    <input type="submit" name="submit" value="Submit">
+</form>
 
 <?php 
 
@@ -92,5 +92,5 @@ if(isset($_POST['submit'])) {
     }
 }
 ?>
-    </div>
+</div>
 <?php require("includes/footer.php"); ?>
