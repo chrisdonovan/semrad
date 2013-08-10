@@ -1,0 +1,312 @@
+/* CSS Document */
+
+body{
+  color: #1D1626;
+  background-color: #BFAA8F;
+  padding-top: 40px;
+}
+
+/*------ Bootstrap changes -----*/
+.navbar .brand{
+	margin-left: 8%;
+	padding-right: 60px;
+	color: #cccccc;	
+}
+
+.navbar-inverse .navbar-inner {
+	background-color: #153450;
+	background-image: -moz-linear-gradient(top, #594c4c, #1d1626);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#594c4c), to(#1d1626));
+	background-image: -webkit-linear-gradient(top, #594c4c, #1d1626);
+	background-image: -o-linear-gradient(top, #594c4c, #1d1626);
+	background-image: linear-gradient(to bottom, #594c4c, #1d1626);
+	background-repeat: repeat-x;
+	border-color: #252525;
+
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1d1626', endColorstr='#ff111111', GradientType=0);
+}
+
+.navbar-inverse .brand,
+.navbar-inverse .nav > li > a {
+	color: #cccccc;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.navbar-inverse .brand:hover,
+.navbar-inverse .nav > li > a:hover,
+.navbar-inverse .brand:focus,
+.navbar-inverse .nav > li > a:focus {
+	color: #cccccc;
+}
+
+.navbar-inverse .brand {
+	color: #cccccc;
+}
+
+.navbar-inverse .navbar-text {
+  color: #cccccc;
+}
+
+.navbar-inverse .nav > li > a:focus,
+.navbar-inverse .nav > li > a:hover {
+	color: #cccccc;
+	background-color: transparent;
+}
+
+.navbar-inverse .nav .active > a,
+.navbar-inverse .nav .active > a:hover,
+.navbar-inverse .nav .active > a:focus {
+  	color: #999999;
+  	background-color: #000000;
+	background-image: -moz-linear-gradient(top, #594c4c, #000000);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#594c4c), to(#000000));
+	background-image: -webkit-linear-gradient(top, #594c4c, #000000);
+	background-image: -o-linear-gradient(top, #594c4c, #111111);
+	background-image: linear-gradient(to bottom, #594c4c, #111111);
+	background-repeat: repeat-x;
+	border-color: #ffffff;
+}
+
+.btn-primary {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #0033cc;
+  *background-color: #0044cc;
+  background-image: -moz-linear-gradient(top, #333, #0033cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333), to(#0033cc));
+  background-image: -webkit-linear-gradient(top, #333, #0033cc);
+  background-image: -o-linear-gradient(top, #333, #0033cc);
+  background-image: linear-gradient(to bottom, #333, #0033cc);
+  background-repeat: repeat-x;
+  border-color: #333 #333 #0033cc;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffffff;
+  background-color: #0033cc;
+  *background-color: #0033cc;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #003399 \9;
+}
+
+.navbar-inverse .nav-collapse .mynav-tabs > li > a:hover,
+.navbar-inverse .nav-collapse .mynav-tabs > li > a:focus,
+.navbar-inverse .nav-collapse .dropdown-menu a:hover,
+.navbar-inverse .nav-collapse .dropdown-menu a:focus {
+  	background-color: #000000;
+	background-image: -moz-linear-gradient(top, #594c4c, #000000);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#594c4c), to(#000000));
+	background-image: -webkit-linear-gradient(top, #594c4c, #000000);
+	background-image: -o-linear-gradient(top, #594c4c, #111111);
+	background-image: linear-gradient(to bottom, #594c4c, #111111);
+	background-repeat: repeat-x;
+	border-color: #ffffff;
+}
+
+
+@media (max-width: 979px){
+  .navbar-inverse .nav-collapse .nav > li > a:hover,
+  .navbar-inverse .nav-collapse .nav > li > a:focus,
+  .navbar-inverse .nav-collapse .dropdown-menu a:hover,
+  .navbar-inverse .nav-collapse .dropdown-menu a:focus {
+    color: #999999;
+  	background-color: #000000;
+	background-image: -moz-linear-gradient(top, #594c4c, #000000);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#594c4c), to(#000000));
+	background-image: -webkit-linear-gradient(top, #594c4c, #000000);
+	background-image: -o-linear-gradient(top, #594c4c, #111111);
+	background-image: linear-gradient(to bottom, #594c4c, #111111);
+	background-repeat: repeat-x;
+	border-color: #ffffff;
+  }
+}
+
+/*------ New styles ------*/
+
+footer {
+	color: #555555;
+	position:relative;
+	bottom:0;
+	height:60px;
+	text-align: right;
+	margin-top: 10%;
+	padding-top: 30px;
+	font-size: 20px;
+	
+	background-color: #153450;
+	background-image: -moz-linear-gradient(bottom, #594c4c, #1d1626);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#594c4c), to(#1d1626));
+	background-image: -webkit-linear-gradient(bottom, #594c4c, #1d1626);
+	background-image: -o-linear-gradient(bottom, #594c4c, #1d1626);
+	background-image: linear-gradient(to top, #594c4c, #1d1626);
+	background-repeat: repeat-x;
+	border-color: #252525;
+
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1d1626', endColorstr='#ff111111', GradientType=0);
+}
+
+@media (max-width: 680px){
+	footer{
+		font-size: 14px;	
+	}
+}
+
+footer a {
+	color: #cccccc;
+	border-right: 2px solid #cccccc;
+	padding: 0 8px;
+}
+
+footer #copy{
+	color: #cccccc;
+	padding-left: 2px;
+}
+
+.foot-active{
+	pointer-events: none;
+	cursor: default;
+	color: inherit;
+}
+
+footer a:hover {
+	color: #efefef;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -63px;
+}
+
+.push {
+	height: 63px;
+}
+
+/* not required for sticky footer; just pushes hero down a bit */
+.wrapper > .container {
+	padding-top: 60px;
+}
+h1.main-header{
+	color: #594C4C;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-header{
+	color: #1d1626;
+	border-bottom: 1px solid #F2E0BD;
+}
+
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small {
+  font-weight: normal;
+  line-height: 1;
+  color: #F2E0BD;
+}
+
+.hero-unit h1 {
+	padding-bottom:20px;
+	text-shadow: 1px 3px 10px #888;
+}
+
+/* Phone Size */
+@media (max-width: 396px){
+	.hero-unit h1{
+		font-size: 200%;	
+	}
+	
+	.hero-unit img{
+		padding: 0;
+		min-width: 50px;
+	}
+	
+	footer{
+		font-size: 10px;	
+	}
+}
+
+.hero-unit p {
+	color: #000;
+	line-height: 1.3em;
+}
+
+.hero-unit img {
+	padding:50px 50px 0 20px;
+	min-width: 200px;	
+}
+
+.input-size{
+	width: 350px;
+}
+
+.textarea-size{
+	width: 350px;
+	height: 250px;
+}
+
+.table-bordered {
+  max-width: 100%;
+  min-width: 50%;
+  border: none;
+  border-collapse: separate;
+  *border-collapse: collapse;
+  border-left: 0;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border-left: none;
+}
+
+.projects th{
+	font-size: 24px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #8C786C;
+}
+
+.proj-head{
+	font-style: italic;
+	text-align: left;
+	color: #1d1626;
+}
+
+.proj-detail:hover{
+	background-color: #F2E0BD;
+}
+
+.proj-detail{
+	color: #594c4c;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.proj-detail td a{
+	color: #594c4c;
+	font-weight: bolder;
+	text-decoration: none;
+}
+
+#proj-table td:hover{
+	cursor: pointer;	
+}
