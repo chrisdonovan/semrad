@@ -18,16 +18,19 @@
       <link rel="stylesheet" media="screen" href="/css/main.css" />
       <link rel="stylesheet" media="screen" href="/css/zebra-bootstrap.css" />
       <link rel="stylesheet" media="screen" href="/css/bootstrap/bootstrap-responsive.min.css" />
+      <link rel="stylesheet" media="screen" href="/css/jquery.dataTables.css" />
 
       <!---------- Script Files ---------->
       <script type="text/javascript" src="/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
       <script type="text/javascript" src="https://www.google.com/jsapi"></script>
       <script type="text/javascript" src="/js/zebra_datepicker.js"></script>
+      <script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
       <script type="text/javascript" src="/js/main.js"></script>
             
       <!---------- Font Family ---------->
       <link href='http://fonts.googleapis.com/css?family=Share' rel='stylesheet'>
+      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
   
       <!---------- FAVICON -------------->
       <link rel="shortcut icon" href="/favicon.ico" />

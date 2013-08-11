@@ -3,11 +3,11 @@
 <?php define('TITLE','Results'); ?>
 <?php include("includes/header.php"); ?>
 <?php include("./includes/menu.php"); ?>
-
+<br />
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span1 hidden-phone"></div>
-    <div class="span5"><?php 
+    <div class="span2 hidden-phone"></div>
+    <div class="span8"><?php 
       // If there was a submit
       //if(isset($_POST['submit'])) {
       /*
@@ -72,23 +72,30 @@
           die("Database query failed: " . mysqli_error($con));
       }
 
-      echo "<table width='100%' class=\"table table-condensed\"><tr><td width='20%'><b>Date</b></td><td width='30%'><b>Time</b></td><td width='50%'><b>Caller ID</b></td></tr>";
+      echo "
+      <table id='all-calls-table' width='100%' class=\"table table-condensed table-striped table-hover\">
+        <thead>
+        <tr>
+          <td width='20%'><b>Date</b></td>
+          <td width='30%'><b>Time</b></td>
+          <td width='50%'><b>Caller ID</b></td>
+        </tr>
+        </thead>
+        <tbody>";
       while ($row = mysqli_fetch_array($result)){
           echo "<tr>";
-          echo "<td width='33%' bgcolor='gray'>{$row["AcwDate"]}</td>";
+          echo "<td width='33%'>{$row["AcwDate"]}</td>";
           echo "<td width='33%'>{$row["AcwTime"]}</td>";
-          echo "<td width='34%' bgcolor='gray'>{$row["AcwCallID"]}</td>";
+          echo "<td width='34%'>{$row["AcwCallID"]}</td>";
           echo "</tr>";
       }
-      echo "</table>";
+      echo "</tbody></table>";
   ?></div>
-    <div class='span5'>
-        <div id='pie_chart_div'></div>
-    </div>
   </div>
+  <br /><br />
   <div class="row-fluid">
-    <div class="span1 hidden-phone"></div>
-    <div class='span5'><?php
+    <div class="span2 hidden-phone"></div>
+    <div class='span8'><?php
 
         // Begin right margin
         echo "<h4 style='color:black'>Relevant calls for <b>{$station_name}</b> between <b>{$date_begin}</b> and <b>{$date_end}</b></h4>";
@@ -100,23 +107,43 @@
             die("Database query failed: " . mysqli_error($con));
         }
 
-        echo "<table width='100%'><tr><td width='15%'><b>Date</b></td><td width='15%'><b>Air Time</b></td><td width='15%'><b>Call Time</b></td><td width='10%'><b>Cost</b></td><td width='45%'><b>ISCI</b></td></tr>";
+        echo "
+        <table width='100%' id='relevant-table' class=\"table table-condensed table-striped table-hover\">
+          <thead>
+          <tr>
+            <th width='15%'><b>Date</b></th>
+            <th width='15%'><b>Air Time</b></th>
+            <th width='15%'><b>Call Time</b></th>
+            <th width='10%'><b>Cost</b></th>
+            <th width='45%'><b>ISCI</b></th>
+          </tr>
+          </thead>
+          <tbody>";
         while ($row = mysqli_fetch_array($result)){
             echo "<tr>";
-            echo "<td width='15%' bgcolor='gray'>{$row["RcwDate"]}</td>";
+            echo "<td width='15%'>{$row["RcwDate"]}</td>";
             echo "<td width='15%'>{$row["RcwTime"]}</td>";
-            echo "<td width='15%' bgcolor='gray'>{$row["RcwCallTime"]}</td>";
+            echo "<td width='15%'>{$row["RcwCallTime"]}</td>";
             echo "<td width='10%'>\${$row["RcwPrice"]}</td>";
-            echo "<td width='45%' bgcolor='gray'>{$row["RcwISCI"]}</td>";
+            echo "<td width='45%'>{$row["RcwISCI"]}</td>";
             echo "</tr>";
         }
-        echo "</table>";
+        echo "</tbody></table>";
 
         $jsonData = buildjsonpie($con);
 
         //}
     ?></div>
   </div>
+  <br /><br />
+  <div class="container-fluid">
+  <div class="row-fluid">
+      <div class="span3 hidden-phone"></div>
+      <div class='span6 center'>
+        <div id='pie_chart_div'></div>
+    </div>
+  </div>
+</div>
 <br />
 
 <!-- Begin PieChart JS -->
@@ -140,12 +167,13 @@
       title: '<?php echo "Calls Per Weekday for {$station_name}"; ?>',
       titleTextStyle: {bold: true, fontSize: 20},
       pieSliceText: 'value',
-      width: 800,
-      height: 480,
+      width: 500,
+      height: 400,
       is3D: true,
-      backgroundColor: '#BFAA8F',
       legend: {position:'left', textStyle: {color: 'black', fontSize: 18}},
-      pieSliceTextStyle: {fontSize: 16}
+      pieSliceTextStyle: {fontSize: 16},
+      chartArea: {left:20,top:60,width:"90%",height:"90%"},
+      fontName: 'Source Sans Pro'
     };
     
     // Draw chart with options

@@ -68,18 +68,22 @@ $(document).ready(function() {
 		}
 		return false;
 	});
-        
-        /* Zebra Datepicker ID handlers */
-        $('#wkbegin').Zebra_DatePicker({
-          view: 'months'
-          ,direction: [false, '2013-04-01']
-          ,always_visible: $('#bgncal')
-          ,pair: $('#wkend')
-        });
-        
-        $('#wkend').Zebra_DatePicker({
-          view: 'months'
-          //,direction: [false, true]
-          ,always_visible: $('#endcal')
-        });
+    
+    /* Zebra Datepicker ID handlers */
+    $('#wkbegin').Zebra_DatePicker({
+      view: 'months'
+      ,direction: [false, '2013-04-01']
+      ,always_visible: $('#bgncal')
+      ,pair: $('#wkend')
+    });
+    
+    $('#wkend').Zebra_DatePicker({
+      view: 'months'
+      //,direction: [false, true]
+      ,always_visible: $('#endcal')
+    });
+
+    $('#all-calls-table').dataTable();
+    $('#relevant-table').dataTable();
+
 });
