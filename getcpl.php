@@ -119,7 +119,7 @@
   </div>
 <br />
 
-<!--- Begin PieChart JS --->
+<!-- Begin PieChart JS -->
 <script type="text/javascript">
   // Load the Visualization API and the piechart package.
   google.load('visualization', '1', {'packages':['corechart']});
