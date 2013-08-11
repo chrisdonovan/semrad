@@ -11,7 +11,7 @@
 
       <form action="getcpl.php" method="post">
         <div id="frmStation">Station/DNIS:</div>
-        <select name="dnis" id="dnis">
+        <select name="dnis" id="dnis" style="margin: 0 0 25px 0;">
           <option value="28">8200 - Radio, Atlanta - WAMJ</option>
           <option value="29">2840 - Radio, Atlanta - WPZE</option>
           <option value="126">2848 - Radio, Atlanta - WALR</option>
@@ -29,10 +29,18 @@
           <option value="00">Atlanta - Overall CPL</option>
           <option value="01">Nashville - Overall CPL</option>
         </select>
-        <div id="frmBgnDate">Start Query Date (yyyy-mm-dd): </div><input type="date" name="wkbegin" id="wkbegin" />
-        <div id="frmEndDate">End Query Date (yyyy-mm-dd): </div><input type="date" name="wkend" id="wkend" /><br />
+        <div>
+        <input id="wkbegin" type="text" name="wkbegin" placeholder="Begin Query Date" />
+        <div id="bgncal" style="margin: 0 0 315px 0"></div>
+        </div>
+        <div>
+        <input id="wkend" type="text" name="wkend" placeholder="End Query Date" />
+        <div id="endcal" style="margin: 0 0 300px 0"></div>
         <input type="submit" value="Submit" class="btn" />
+        </div>
       </form>
+
+      
 
     </div>
   </div>
