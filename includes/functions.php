@@ -29,31 +29,31 @@
       ]
   }
  */
-	function buildjsonpie($con) {
-            // Get table info 
-            $dbquery = "select * from CallsByWeekday";
-            $result = mysqli_query($con, $dbquery);
-            if (!$result){
-                die("Database query failed: " . mysqli_error($con));
-            }
-            
-            $i = 0;
-            while ($row = mysqli_fetch_array($result)){
-                $rows[$i] = $row['CbwNumber'];
-                $i = $i + 1;
-            }
-                
-            $jsonData = "{\"cols\":[{\"label\":\"Weekday\",\"type\":\"string\"}," .
-                                   "{\"label\":\"Total\",\"type\":\"number\"}]," .
-                        "\"rows\":[{\"c\":[{\"v\":\"Monday\"},{\"v\":{$rows[0]}}]}," .
-                        "{\"c\":[{\"v\":\"Tuesday\"},{\"v\":{$rows[1]}}]}," .
-                        "{\"c\":[{\"v\":\"Wednesday\"},{\"v\":{$rows[2]}}]}," .
-                        "{\"c\":[{\"v\":\"Thursday\"},{\"v\":{$rows[3]}}]}," .
-                        "{\"c\":[{\"v\":\"Friday\"},{\"v\":{$rows[4]}}]}," .
-                        "{\"c\":[{\"v\":\"Saturday\"},{\"v\":{$rows[5]}}]}," .
-                        "{\"c\":[{\"v\":\"Sunday\"},{\"v\":{$rows[6]}}]}]}";
-                            
-            return $jsonData;
-	}
+  function buildjsonpie($con) {
+    // Get table info 
+    $dbquery = "select * from CallsByWeekday";
+    $result = mysqli_query($con, $dbquery);
+    if (!$result){
+        die("Database query failed: " . mysqli_error($con));
+    }
+
+    $i = 0;
+    while ($row = mysqli_fetch_array($result)){
+        $rows[$i] = $row['CbwNumber'];
+        $i = $i + 1;
+    }
+        
+    $jsonData = "{\"cols\":[{\"label\":\"Weekday\",\"type\":\"string\"}," .
+                           "{\"label\":\"Total\",\"type\":\"number\"}]," .
+                "\"rows\":[{\"c\":[{\"v\":\"Monday\"},{\"v\":{$rows[0]}}]}," .
+                "{\"c\":[{\"v\":\"Tuesday\"},{\"v\":{$rows[1]}}]}," .
+                "{\"c\":[{\"v\":\"Wednesday\"},{\"v\":{$rows[2]}}]}," .
+                "{\"c\":[{\"v\":\"Thursday\"},{\"v\":{$rows[3]}}]}," .
+                "{\"c\":[{\"v\":\"Friday\"},{\"v\":{$rows[4]}}]}," .
+                "{\"c\":[{\"v\":\"Saturday\"},{\"v\":{$rows[5]}}]}," .
+                "{\"c\":[{\"v\":\"Sunday\"},{\"v\":{$rows[6]}}]}]}";
+                    
+    return $jsonData;
+  }
 
 ?>

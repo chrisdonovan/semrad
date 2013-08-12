@@ -3,10 +3,10 @@
 <?php include("includes/header.php"); ?>
 <?php include("includes/menu.php"); ?>
 
-<div class="span2"></div>
-<div class="span9">
+<div class="span4"></div>
+<div class="span4">
 <h2>Content Area</h2>
-
+<br />
 <select name="csvtype" form="csvform">
     <option value="calls">Call Log</option>
     <option value="nashpostlog">Nashville Post Log</option>
@@ -14,8 +14,8 @@
 </select>
 <form action="uploadpost.php" method="post" enctype="multipart/form-data" id="csvform">
     <label for="file">Filename:</label>
-    <input type="file" name="file" id="file"><br>
-    <input type="submit" name="submit" value="Submit">
+    <input type="file" name="file" id="file"><br /><br />
+    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
 </form>
 
 <?php 

@@ -6,12 +6,12 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2 hidden-phone"></div>
-    <div class="span8">
+    <div class="span8 center">
       <h2>Content Area</h2>
 
       <form action="getcpl.php" method="post">
         <div id="frmStation">Station/DNIS:</div>
-        <select name="dnis" id="dnis" style="margin: 0 0 25px 0;">
+        <select name="dnis" id="dnis" class="input-xxlarge" style="margin: 0 0 25px 0;">
           <option value="28">8200 - Radio, Atlanta - WAMJ</option>
           <option value="29">2840 - Radio, Atlanta - WPZE</option>
           <option value="126">2848 - Radio, Atlanta - WALR</option>
@@ -29,14 +29,23 @@
           <option value="00">Atlanta - Overall CPL</option>
           <option value="01">Nashville - Overall CPL</option>
         </select>
-        <div>
-        <input id="wkbegin" type="text" name="wkbegin" placeholder="Begin Query Date" />
-        <div id="bgncal" style="margin: 0 0 315px 0"></div>
+        <div class="clear"></div>
+
+        <div class="calendars">
+          <div style="float:left">
+          <input id="wkbegin" type="text" name="wkbegin" placeholder="Begin Query Date" />
+          <div id="bgncal" style="margin: 0 0 315px 0"></div>
+          </div>
+
+          <div style="float:right">
+          <input id="wkend" type="text" name="wkend" placeholder="End Query Date" />
+          <div id="endcal" style="margin: 0 0 300px 0"></div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div>
-        <input id="wkend" type="text" name="wkend" placeholder="End Query Date" />
-        <div id="endcal" style="margin: 0 0 300px 0"></div>
-        <input type="submit" value="Submit" class="btn" />
+
+        <div class="clear">
+          <input type="submit" value="Submit" class="btn btn-primary btn-large" />
         </div>
       </form>
 
