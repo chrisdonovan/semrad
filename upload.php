@@ -69,6 +69,7 @@
           $dbquery = "CALL InsertCallLog('{$entry[0]} {$entry[1]}','{$entry[2]}','{$entry[3]}','{$entry[4]}','{$entry[5]}')";
           $result = mysqli_query($con, $dbquery);
           if (!$result){
+            echo "<em>{$dbquery}</em>";
             die("Database query failed: " . mysqli_error($con));
           }
         }

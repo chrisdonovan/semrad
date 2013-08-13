@@ -78,6 +78,12 @@ function buildjsonpie($con) {
     elseif (preg_match('/\d{2}:\d{2}[\s][A|P]M/',$time)) {
       $tmpattern = "%h:%i %p'";
     }
+    elseif (preg_match('/\d{1}:\d{2}[A|P]M/',$time)) {
+      $tmpattern = "%l:%i%p'";
+    }
+    elseif (preg_match('/\d{1}:\d{2}[\s][A|P]M/',$time)) {
+      $tmpattern = "%l:%i %p'";
+    }
     else {
       $tmpattern = "%T'";
     }
