@@ -161,8 +161,6 @@
 
         $jsonPieData = buildjsonpie($con);
         $jsonLineData = buildjsonline($con);
-        echo $jsonLineData;
-        //}
     ?></div>
   </div>
   <br /><br />
