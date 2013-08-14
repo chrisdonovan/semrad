@@ -15,6 +15,7 @@
           <option value="28">8200 - Radio, Atlanta - WAMJ</option>
           <option value="29">2840 - Radio, Atlanta - WPZE</option>
           <option value="126">2848 - Radio, Atlanta - WALR</option>
+          <option value="129">2856 - Radio, Atlanta - WKHX</option>
           <option value="128">2846 - Radio, Atlanta - Radio One Remnant</option>
           <option value="52">8954 - Radio, Atlanta - Cox Remnant</option>
           <option value="6">2588 - TV, Atlanta - WUPA</option>
