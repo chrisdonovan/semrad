@@ -8,13 +8,6 @@
   <div class="row-fluid">
     <div class="span2 hidden-phone"></div>
     <div class="span8"><?php 
-      // If there was a submit
-      //if(isset($_POST['submit'])) {
-      /*
-      while ($row = mysqli_fetch_array($result)){
-          echo "<li>{$row["menu_name"]}</li>";
-      }
-      */
       $dnis_id = $_POST['dnis'];
       $wkbegin = $_POST['wkbegin'] . ' 00:00:00';
       $wkend = $_POST['wkend'] . ' 23:59:59';
@@ -34,7 +27,12 @@
           die("Database query failed: " . mysqli_error($con));
       }
       $rows = mysqli_fetch_array($result);
-      $total_cost = $rows["CfwCost"];
+      if ($rows["CfwCost"]) {
+        $total_cost = $rows["CfwCost"];
+      }
+      else {
+        $total_cost = 0;
+      }
 
       // Get call count for CPL calculation
       $dbquery = "SELECT COUNT(*) as `total` FROM AllCallsForWeek";
@@ -43,10 +41,16 @@
           die("Database query failed: " . mysqli_error($con));
       }
       $rows = mysqli_fetch_array($result);
-      $total_calls = $rows["total"];
-
+      if ($rows["total"]) {
+        $total_calls = $rows["total"];
+      }
+      else {
+        $total_calls = 0;
+      }
+      
       // Get table info 
-      $dbquery = "select OutStation, date_format(OutDateBegin,'%m/%d/%Y') as OutDateBegin, date_format(OutDateEnd,'%m/%d/%Y') as OutDateEnd from OutputInformation";
+      $dbquery = "select OutStation, date_format(OutDateBegin,'%m/%d/%Y') as OutDateBegin, " . 
+                 "date_format(OutDateEnd,'%m/%d/%Y') as OutDateEnd from OutputInformation";
       $result = mysqli_query($con, $dbquery);
       if (!$result){
           die("Database query failed: " . mysqli_error($con));
@@ -56,14 +60,19 @@
       $date_begin = $rows["OutDateBegin"];
       $date_end = $rows["OutDateEnd"];
 
-      echo "<h4>Total Cost: \${$total_cost}";
-      echo "<br />Total Calls: {$total_calls}";
+      echo "<h4>Total Cost: \$" . $total_cost;
+      echo "<br />Total Calls: " . $total_calls;
 
-      $cpl = $total_cost / $total_calls;
-      echo "<br />CPL: \${$cpl}" . "</h4>";
+      if ($total_calls === 0) {
+        echo "<br />CPL: \$" . $total_cost . "</h4>";
+      }
+      else {
+        echo "<br />CPL: \$" . $total_cost / $total_calls . "</h4>";
+      }
 
       // Begin left margin
-      echo "<br /><h4 style='color:black'>All calls for <b>{$station_name}</b> between <b>{$date_begin}</b> and <b>{$date_end}</b></h4>";
+      echo "<br /><h4 style='color:black'>All calls for <b>{$station_name}</b> between " . 
+           "<b>{$date_begin}</b> and <b>{$date_end}</b></h4>";
 
       // Get all calls for week 
       $dbquery = "SELECT * FROM AllCallsForWeek";
