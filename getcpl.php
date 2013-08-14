@@ -69,13 +69,31 @@
       else {
         echo "<br />CPL: \$" . $total_cost / $total_calls . "</h4>";
       }
-
+      ?>
+      <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span1 hidden-phone"></div>
+            <div class='span8 center'>
+              <div id='pie_chart'></div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span1 hidden-phone"></div>
+            <div class='span8 center'>
+              <div id='line_chart'></div>
+            </div>
+        </div>
+      </div><?php
       // Begin left margin
       echo "<br /><h4 style='color:black'>All calls for <b>{$station_name}</b> between " . 
            "<b>{$date_begin}</b> and <b>{$date_end}</b></h4>";
 
       // Get all calls for week 
-      $dbquery = "SELECT * FROM AllCallsForWeek";
+      $dbquery = "SELECT DATE_FORMAT(STR_TO_DATE(AcwDate,'%m/%d/%Y'), '%W, %m/%d/%Y') " .
+                 "as AcwDate, AcwTime, AcwCallID FROM AllCallsForWeek";
       $result = mysqli_query($con, $dbquery);
       if (!$result){
           die("Database query failed: " . mysqli_error($con));
@@ -107,10 +125,12 @@
     <div class='span8'><?php
 
         // Begin right margin
-        echo "<h4 style='color:black'>Relevant calls for <b>{$station_name}</b> between <b>{$date_begin}</b> and <b>{$date_end}</b></h4>";
+        echo "<h4 style='color:black'>Relevant calls for <b>{$station_name}</b> " .
+             "between <b>{$date_begin}</b> and <b>{$date_end}</b></h4>";
 
         // Get relevant calls for week 
-        $dbquery = "SELECT * FROM RelCallsForWeek";
+        $dbquery = "SELECT DATE_FORMAT(STR_TO_DATE(RcwDate,'%m/%d/%Y'), '%W, %m/%d/%Y') " .
+                   "as RcwDate, RcwTime, RcwCallTime, RcwPrice, RcwISCI FROM RelCallsForWeek";
         $result = mysqli_query($con, $dbquery);
         if (!$result){
             die("Database query failed: " . mysqli_error($con));
@@ -139,20 +159,13 @@
         }
         echo "</tbody></table>";
 
-        $jsonData = buildjsonpie($con);
-
+        $jsonPieData = buildjsonpie($con);
+        $jsonLineData = buildjsonline($con);
+        echo $jsonLineData;
         //}
     ?></div>
   </div>
   <br /><br />
-  <div class="container-fluid">
-  <div class="row-fluid">
-      <div class="span3 hidden-phone"></div>
-      <div class='span6 center'>
-        <div id='pie_chart_div'></div>
-    </div>
-  </div>
-</div>
 <br />
 
 <!-- Begin PieChart JS -->
@@ -161,15 +174,15 @@
   google.load('visualization', '1', {'packages':['corechart']});
   
   // Set a callback to run when the Google Visualization API is loaded.
-  google.setOnLoadCallback(drawChart);
+  google.setOnLoadCallback(drawPieChart);
   
   // Function that creates the chart
-  function drawChart() {      
+  function drawPieChart() {      
     // Create our data table out of JSON data loaded from server.
-    var data = new google.visualization.DataTable('<?php echo $jsonData; ?>');
+    var data = new google.visualization.DataTable('<?php echo $jsonPieData; ?>');
     
     // Instantiate chart
-    var chart = new google.visualization.PieChart(document.getElementById('pie_chart_div'));
+    var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
     
     // Define options
     var options = {
@@ -182,6 +195,39 @@
       legend: {position:'left', textStyle: {color: 'black', fontSize: 18}},
       pieSliceTextStyle: {fontSize: 16},
       chartArea: {left:20,top:60,width:"90%",height:"90%"},
+      fontName: 'Source Sans Pro'
+    };
+    
+    // Draw chart with options
+    chart.draw(data, options);
+  }
+</script>
+<!-- Begin LineChart JS -->
+<script type="text/javascript">
+  // Load the Visualization API and the piechart package.
+  google.load('visualization', '1', {'packages':['corechart']});
+  
+  // Set a callback to run when the Google Visualization API is loaded.
+  google.setOnLoadCallback(drawLineChart);
+  
+  // Function that creates the chart
+  function drawLineChart() {      
+    // Create our data table out of JSON data loaded from server.
+    var data = new google.visualization.DataTable('<?php echo $jsonLineData; ?>');
+    
+    // Instantiate chart
+    var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
+    
+    // Define options
+    var options = {
+      title: '<?php echo "Calls Per Day for {$station_name}"; ?>',
+      titleTextStyle: {bold: true, fontSize: 20},
+      pieSliceText: 'value',
+      width: 800,
+      is3D: true,
+      legend: {position:'left', textStyle: {color: 'black', fontSize: 18}},
+      pieSliceTextStyle: {fontSize: 16},
+      chartArea: {left:20,width:"100%"},
       fontName: 'Source Sans Pro'
     };
     

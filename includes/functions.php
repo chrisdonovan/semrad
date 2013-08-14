@@ -28,7 +28,7 @@ function buildjsonpie($con) {
     $i = $i + 1;
   }
 
-  $jsonData = "{\"cols\":[{\"label\":\"Weekday\",\"type\":\"string\"}," .
+  $jsonPieData = "{\"cols\":[{\"label\":\"Weekday\",\"type\":\"string\"}," .
               "{\"label\":\"Total\",\"type\":\"number\"}]," .
               "\"rows\":[{\"c\":[{\"v\":\"Monday\"},{\"v\":{$rows[0]}}]}," .
               "{\"c\":[{\"v\":\"Tuesday\"},{\"v\":{$rows[1]}}]}," .
@@ -38,7 +38,37 @@ function buildjsonpie($con) {
               "{\"c\":[{\"v\":\"Saturday\"},{\"v\":{$rows[5]}}]}," .
               "{\"c\":[{\"v\":\"Sunday\"},{\"v\":{$rows[6]}}]}]}";
 
-  return $jsonData;
+  return $jsonPieData;
+}
+
+function buildjsonline($con) {
+  // Get table info 
+  $dbquery = "select DATE_FORMAT(STR_TO_DATE(AcwDate,'%m/%d/%Y'),'%c/%d') as " .
+             "AcwDate, COUNT(AcwDate) as `Total` from AllCallsForWeek " .
+             "group by AcwDate order by AcwDate";
+  $result = mysqli_query($con, $dbquery);
+  if (!$result){
+    die("Database query failed: " . mysqli_error($con));
+  }
+
+  $i = 0;
+  while ($row = mysqli_fetch_array($result)){
+    $xaxis[$i] = $row['AcwDate'];
+    $yaxis[$i] = $row['Total'];
+    $i = $i + 1;
+  }
+  
+  $jsonLineData = "{\"cols\":[{\"label\":\"Date\",\"type\":\"string\"}," .
+                  "{\"label\":\"Total\",\"type\":\"number\"}]," .
+                  "\"rows\":[";
+
+  for ($k = 0; $k < $i; $k++){
+    $jsonLineData .= "{\"c\":[{\"v\":\"{$xaxis[$k]}\"},{\"v\":{$yaxis[$k]}}]},";
+  }
+  
+  $jsonLineData = $rest = substr($jsonLineData, 0, -1) . "]}";
+
+  return $jsonLineData;
 }
 
 // RegEx date pattern
