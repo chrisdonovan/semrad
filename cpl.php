@@ -27,8 +27,8 @@
           <option value="10">4543 - TV, Nashville - WUXP</option>
           <option value="35">1446 - Radio, Atlanta - Barrington</option>
           <option value="36">4542 - Radio, Nashville - Barrington</option>
-          <option value="00">Atlanta - Overall CPL</option>
-          <option value="01">Nashville - Overall CPL</option>
+          <option value="00" disabled>Atlanta - Overall CPL</option>
+          <option value="01" disabled>Nashville - Overall CPL</option>
         </select>
         <div class="clear"></div>
 

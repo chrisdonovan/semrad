@@ -60,14 +60,14 @@
       $date_begin = $rows["OutDateBegin"];
       $date_end = $rows["OutDateEnd"];
 
-      echo "<h4>Total Cost: \$" . $total_cost;
-      echo "<br />Total Calls: " . $total_calls;
+      echo "<div class='tab'><div class='left'><h3>Total Cost: \$" . $total_cost;
+      echo "</h3></div><div class='center'><h3>Total Calls: " . $total_calls;
 
       if ($total_calls === 0) {
-        echo "<br />CPL: \$" . $total_cost . "</h4>";
+        echo "</h3></div></div><div class='tab left'><h3>CPL: \$" . $total_cost . "</div></h3>";
       }
       else {
-        echo "<br />CPL: \$" . $total_cost / $total_calls . "</h4>";
+        echo "</h3></div></div><div class='cpl'>CPL: \$" . $total_cost / $total_calls . "</div>";
       }
       ?>
       <div class="container-fluid">
@@ -86,47 +86,12 @@
               <div id='line_chart'></div>
             </div>
         </div>
-      </div><?php
-      // Begin left margin
-      echo "<br /><h4 style='color:black'>All calls for <b>{$station_name}</b> between " . 
-           "<b>{$date_begin}</b> and <b>{$date_end}</b></h4>";
-
-      // Get all calls for week 
-      $dbquery = "SELECT DATE_FORMAT(STR_TO_DATE(AcwDate,'%m/%d/%Y'), '%W, %m/%d/%Y') " .
-                 "as AcwDate, AcwTime, AcwCallID FROM AllCallsForWeek";
-      $result = mysqli_query($con, $dbquery);
-      if (!$result){
-          die("Database query failed: " . mysqli_error($con));
-      }
-
-      echo "
-      <table id='all-calls-table' width='100%' class=\"table table-condensed table-striped table-hover\">
-        <thead>
-        <tr>
-          <td width='20%'><b>Date</b></td>
-          <td width='30%'><b>Time</b></td>
-          <td width='50%'><b>Caller ID</b></td>
-        </tr>
-        </thead>
-        <tbody>";
-      while ($row = mysqli_fetch_array($result)){
-          echo "<tr>";
-          echo "<td width='33%'>{$row["AcwDate"]}</td>";
-          echo "<td width='33%'>{$row["AcwTime"]}</td>";
-          echo "<td width='34%'>{$row["AcwCallID"]}</td>";
-          echo "</tr>";
-      }
-      echo "</tbody></table>";
-  ?></div>
-  </div>
-  <br /><br />
-  <div class="row-fluid">
-    <div class="span2 hidden-phone"></div>
-    <div class='span8'><?php
+      </div><br /><?php
 
         // Begin right margin
         echo "<h4 style='color:black'>Relevant calls for <b>{$station_name}</b> " .
              "between <b>{$date_begin}</b> and <b>{$date_end}</b></h4>";
+        echo "<h6><em>Relevent calls are calls that came within 30 minutes of a spot airing.</em></h6>";
 
         // Get relevant calls for week 
         $dbquery = "SELECT DATE_FORMAT(STR_TO_DATE(RcwDate,'%m/%d/%Y'), '%W, %m/%d/%Y') " .
@@ -162,6 +127,42 @@
         $jsonPieData = buildjsonpie($con);
         $jsonLineData = buildjsonline($con);
     ?></div>
+  </div>
+  <br />
+  <div class="row-fluid">
+    <div class="span2 hidden-phone"></div>
+    <div class='span8'><?php
+      // Begin left margin
+      echo "<h4 style='color:black'>All calls for <b>{$station_name}</b> between " . 
+           "<b>{$date_begin}</b> and <b>{$date_end}</b></h4>";
+
+      // Get all calls for week 
+      $dbquery = "SELECT DATE_FORMAT(STR_TO_DATE(AcwDate,'%m/%d/%Y'), '%W, %m/%d/%Y') " .
+                 "as AcwDate, AcwTime, AcwCallID FROM AllCallsForWeek";
+      $result = mysqli_query($con, $dbquery);
+      if (!$result){
+          die("Database query failed: " . mysqli_error($con));
+      }
+
+      echo "
+      <table id='all-calls-table' width='100%' class=\"table table-condensed table-striped table-hover\">
+        <thead>
+        <tr>
+          <td width='20%'><b>Date</b></td>
+          <td width='30%'><b>Time</b></td>
+          <td width='50%'><b>Caller ID</b></td>
+        </tr>
+        </thead>
+        <tbody>";
+      while ($row = mysqli_fetch_array($result)){
+          echo "<tr>";
+          echo "<td width='33%'>{$row["AcwDate"]}</td>";
+          echo "<td width='33%'>{$row["AcwTime"]}</td>";
+          echo "<td width='34%'>{$row["AcwCallID"]}</td>";
+          echo "</tr>";
+      }
+      echo "</tbody></table>";
+  ?></div>
   </div>
   <br /><br />
 <br />

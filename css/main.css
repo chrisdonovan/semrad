@@ -325,3 +325,31 @@ h6 small {
 .center {
   text-align: center;
 }
+
+.tab {
+  width: 100%; 
+  padding: 0;
+  margin: 0;
+  opacity: .6;
+}
+
+.tab .left {
+  width: 38%; 
+  max-width: 300px;
+  display: inline-block;
+  text-align: left;
+}
+
+.tab .center {
+  width: 38%; 
+  max-width: 175px;
+  display: inline-block;
+  text-align: center;
+}
+
+.cpl {
+  width: 50%;
+  font-weight: bolder;
+  font-size: 34px;
+  padding: 0 10px 30px 20px;
+}
